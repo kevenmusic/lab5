@@ -31,7 +31,7 @@ namespace ClassLibrary5
                 {
                     if (indexes[i] == index)
                     {
-                        resultBuilder.AppendLine($"| Индекс {index,-11}| соответствует стране {countries[i],-13} |");
+                        resultBuilder.AppendLine($"| Индекс {index,-11}| Соответствует страна {countries[i],-13} |");
                         indexFound = true;
                         break;
                     }
@@ -39,11 +39,12 @@ namespace ClassLibrary5
 
                 if (!indexFound)
                 {
-                    resultBuilder.AppendLine($"| Для индекса {index,-6}| не найдена соответствующая страна.{"",0} |");
+                    resultBuilder.AppendLine($"| Индекс {index,-11}| Не найдена соответствующая страна.{"",0} |");
                 }
             }
 
-            Console.WriteLine(resultBuilder.ToString());
+            string resultString = resultBuilder.ToString().Trim();
+            Console.WriteLine(resultString);
         }
     }
 }

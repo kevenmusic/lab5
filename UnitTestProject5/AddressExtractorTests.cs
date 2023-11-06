@@ -67,5 +67,35 @@ namespace UnitTestProject5
             // Assert
             Assert.AreEqual(expectedOutput, sw.ToString());
         }
+
+        [TestMethod]
+        public void ExtractAndSortIndexes_ShouldHandleInvalidIndexes_second()
+        {
+            // Arrange
+            string[] indexes = new string[] {
+                "HM 05",
+                "10207",
+                "241425"
+            };
+            string[] countries = new string[] {
+                "Россия",
+                "США",
+                "Россия"
+            };
+            string inputText = "Адреса: HM 04 Россия; 10037 США; 98765 Россия;";
+
+            AddressExtractor extractor = new AddressExtractor(indexes, countries);
+
+            // Act
+            StringWriter sw = new StringWriter();
+            Console.SetOut(sw);
+            extractor.ExtractAndSortIndexes(inputText);
+            string expectedOutput = "| Индекс HM 04      | Не найдена соответствующая страна. |\r\n" +
+                                    "| Индекс 10037      | Не найдена соответствующая страна. |\r\n" +
+                                    "| Индекс 98765      | Не найдена соответствующая страна. |\r\n";
+
+            // Assert
+            Assert.AreEqual(expectedOutput, sw.ToString());
+        }
     }
 }
